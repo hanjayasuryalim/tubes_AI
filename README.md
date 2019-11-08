@@ -1,2 +1,3 @@
 # tubes_AI
-Repository for Artificial Inteligence final project
+
+database tbc nya di import dulu.
