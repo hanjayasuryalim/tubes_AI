@@ -38,6 +38,7 @@ public class MainFrame extends JFrame{
         setLocationRelativeTo(null);
         setVisible(true);
         setSize(600,600);
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         
