@@ -4,7 +4,7 @@ package View;
 import javax.swing.*;
 /**
  *
- * @author Hanjaya
+ * @author Sherina
  */
 public class AddDataSetPanel extends JPanel {
     
