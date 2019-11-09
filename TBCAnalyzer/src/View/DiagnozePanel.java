@@ -1,7 +1,9 @@
 package View;
+import Utilities.ResizeImage;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -20,20 +22,15 @@ public class DiagnozePanel extends JPanel{
     DiagnozePanel(){
         setLayout(new GridLayout(2,2));
 
-        fuzzyButton=new JButton("Fuzzy Method");
-        naiveBayesButton=new JButton("NaiveBayes Method");
-        forwardChainingButton=new JButton("Forward Chaining Method");
-        backwardChainingButton=new JButton("Backward Chaining Method");
+        fuzzyButton=new JButton(new ImageIcon(ResizeImage.resize("image/Fuzzy Logic.png", 220, 220)));
+        naiveBayesButton=new JButton(new ImageIcon(ResizeImage.resize("image/NaiveBayes.png", 220, 220)));
+        forwardChainingButton=new JButton(new ImageIcon(ResizeImage.resize("image/Forward Chain.png", 250, 220)));
+        backwardChainingButton=new JButton(new ImageIcon(ResizeImage.resize("image/BackwardChain.png", 250, 220)));
         
-        fuzzyButton.setBackground(Color.BLACK);
-        fuzzyButton.setForeground(Color.WHITE);
-        naiveBayesButton.setBackground(Color.BLACK);
-        naiveBayesButton.setForeground(Color.WHITE);
-        forwardChainingButton.setBackground(Color.BLACK);
-        forwardChainingButton.setForeground(Color.WHITE);
-        backwardChainingButton.setBackground(Color.BLACK);
-        backwardChainingButton.setForeground(Color.WHITE);
-        
+        fuzzyButton.setBackground(Color.WHITE);
+        naiveBayesButton.setBackground(Color.WHITE);
+        forwardChainingButton.setBackground(Color.WHITE);
+        backwardChainingButton.setBackground(Color.WHITE);
         
         add(fuzzyButton);
         add(naiveBayesButton);
@@ -45,16 +42,14 @@ public class DiagnozePanel extends JPanel{
             @Override
             public void mouseEntered(MouseEvent evt){
                 Component c=evt.getComponent();
-                c.setBackground(Color.WHITE);
-                c.setForeground(Color.BLACK);
+                c.setBackground(Color.GRAY);
             }
             
             @Override
             public void mouseExited(java.awt.event.MouseEvent evt)
             {                                      
                 Component c = evt.getComponent();
-                c.setBackground(Color.BLACK);
-                c.setForeground(Color.WHITE);
+                c.setBackground(Color.WHITE);
             }  
         }
         

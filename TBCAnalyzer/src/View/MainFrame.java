@@ -1,6 +1,7 @@
 
 package View;
 
+import Utilities.ResizeImage;
 import java.awt.*; 
 import java.awt.event.ActionEvent; 
 import java.awt.event.ActionListener; 
@@ -46,20 +47,17 @@ public class MainFrame extends JFrame{
         setLayout(new BorderLayout());
         
         //create title panel
-        titlePanel=new JPanel();
-        titleLabel=new JLabel("TBC ANALYZER");
-        titleLabel.setFont(f);
-        titleLabel.setHorizontalAlignment(JLabel.CENTER);
+        titlePanel = new JPanel();
+        titlePanel.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.black));
+        titleLabel = new JLabel(new ImageIcon(ResizeImage.resize("image/TBCAnalyzer.png", 250, 60)));
         titlePanel.add(titleLabel);
-        titlePanel.setBackground(Color.black);
-        titleLabel.setForeground(Color.WHITE);
         
         //create card Panel
         cardPanel=new JPanel();
         cl=new CardLayout();
         cardPanel.setLayout(cl);
         
-        tbcPanel=new TBCPanel();
+        tbcPanel = new TBCPanel();
         diagnozePanel=new DiagnozePanel(); 
         addDataSetPanel=new AddDataSetPanel();
      
@@ -70,9 +68,12 @@ public class MainFrame extends JFrame{
         buttonPanel = new JPanel(); 
         buttonPanel.setLayout(new GridLayout(1,3));
         
-        tbcButton=new JButton("TBC");
-        diagnozeButton=new JButton("Diagnoze");
-        addDataSetButton=new JButton("Add Data Set");
+        tbcButton = new JButton("TBC");
+        tbcButton.setFont(f);
+        diagnozeButton = new JButton("Diagnoze");
+        diagnozeButton.setFont(f);
+        addDataSetButton = new JButton("Add Data Set");
+        addDataSetButton.setFont(f);
         
         buttonPanel.add(tbcButton);
         buttonPanel.add(diagnozeButton);
