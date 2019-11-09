@@ -43,7 +43,7 @@ public class TBCPanel extends JPanel{
                 + " mereka melalui udara.Infeksi TB umumnya bersifat asimtomatikdan laten. Namun hanya satu dari sepuluh kasus "
                 + "infeksi laten yang berkembang menjadi penyakit aktif. Bila Tuberkulosis tidak diobati maka lebih dari 50% "
                 + "orang yang terinfeksi bisa meninggal.<html>");
-        explanation.setHorizontalAlignment(JLabel.CENTER);
+        explanation.setHorizontalAlignment((int) JLabel.CENTER_ALIGNMENT);
         descPanel.add(explanation);
         add(descPanel);
     }

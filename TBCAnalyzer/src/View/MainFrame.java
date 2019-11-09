@@ -33,17 +33,22 @@ public class MainFrame extends JFrame{
     
     
     public void initComponent(){
+        //Font
+        Font f = new Font("Sniglet", Font.BOLD, 18);
+        
         //create meta element of JFrame
         setTitle("TBC Analyzer Application");
-        setLocationRelativeTo(null);
-        setVisible(true);
         setSize(600,600);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         
         //create title panel
         titlePanel=new JPanel();
         titleLabel=new JLabel("TBC ANALYZER");
+        titleLabel.setFont(f);
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         titlePanel.add(titleLabel);
         titlePanel.setBackground(Color.black);
@@ -105,7 +110,7 @@ public class MainFrame extends JFrame{
         });
     }
     
-    MainFrame(){
+    public MainFrame(){
         initComponent();
         
     }
