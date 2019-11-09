@@ -22,9 +22,9 @@ public class DiagnozePanel extends JPanel{
     DiagnozePanel(){
         setLayout(new GridLayout(2,2));
 
-        fuzzyButton=new JButton(new ImageIcon(ResizeImage.resize("image/Fuzzy Logic.png", 220, 220)));
+        fuzzyButton=new JButton(new ImageIcon(ResizeImage.resize("image/FuzzyLogic.png", 220, 220)));
         naiveBayesButton=new JButton(new ImageIcon(ResizeImage.resize("image/NaiveBayes.png", 220, 220)));
-        forwardChainingButton=new JButton(new ImageIcon(ResizeImage.resize("image/Forward Chain.png", 250, 220)));
+        forwardChainingButton=new JButton(new ImageIcon(ResizeImage.resize("image/ForwardChain.png", 250, 220)));
         backwardChainingButton=new JButton(new ImageIcon(ResizeImage.resize("image/BackwardChain.png", 250, 220)));
         
         fuzzyButton.setBackground(Color.WHITE);
