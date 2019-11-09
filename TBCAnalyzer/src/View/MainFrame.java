@@ -53,8 +53,8 @@ public class MainFrame extends JFrame{
         titlePanel.add(titleLabel);
         
         //create card Panel
-        cardPanel=new JPanel();
-        cl=new CardLayout();
+        cardPanel = new JPanel();
+        cl = new CardLayout();
         cardPanel.setLayout(cl);
         
         tbcPanel = new TBCPanel();
