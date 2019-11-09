@@ -4,23 +4,31 @@
  * and open the template in the editor.
  */
 package View;
+
 import Utilities.ResizeImage;
 import static View.Cover.f;
 import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Daniel
  */
-public class BackwardChaining extends JFrame{
+public class ForwardChaining extends JFrame{
     private JLabel temp;
     private JLabel img;
     private JLabel back;
     
     
-    public BackwardChaining(){
+    public ForwardChaining(){
         setSize(700,550);
         setTitle("Backward Chaining ");
         setLocationRelativeTo(null);
@@ -38,7 +46,7 @@ public class BackwardChaining extends JFrame{
         back = new JLabel(new ImageIcon(ResizeImage.resize("image/Back.png", 50, 50)), JLabel.LEFT);
         navbar.add(back);
         
-        img = new JLabel(new ImageIcon(ResizeImage.resize("image/BackwardChainTitle.png", 200, 50)), JLabel.RIGHT);
+        img = new JLabel(new ImageIcon(ResizeImage.resize("image/ForwarChainTitle.png", 200, 50)), JLabel.RIGHT);
         navbar.add(img);
         
         mainPanel.add(navbar, BorderLayout.NORTH);

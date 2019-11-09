@@ -17,6 +17,7 @@ import javax.swing.*;
 public class Cover extends JFrame{
     private JLabel img;
     private JButton start;
+    public static JFrame f;
     
     public Cover(){
         setSize(450,300);
@@ -48,7 +49,7 @@ public class Cover extends JFrame{
         start.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                JFrame f = new MainFrame();
+                f = new MainFrame();
                 dispose();
             }
         });
