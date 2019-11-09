@@ -2,6 +2,9 @@
 package View;
 
 import javax.swing.*;
+import Controller.*;
+import Model.*;
+import Utilities.*;
 
 public class Main {
     
@@ -9,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
        f=new MainFrame();
-       
     }
+    
     
 }
