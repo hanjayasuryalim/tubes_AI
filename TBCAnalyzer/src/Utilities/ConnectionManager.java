@@ -9,21 +9,21 @@ import java.sql.SQLException;
  * @author Hanjaya
  */
 public class ConnectionManager {
-    private Connection conn;
-    private static String server = "jdbc:mysql://localhost/tbc";
-    private String username = "root";
-    private String password = "";
+    private static Connection conn;
+    private static String server = "jdbc:mysql://localhost/tbc?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private static String username = "root";
+    private static String password = "";
     
-    public Connection getConnection(){
-         if(this.conn == null){
-             this.conn = connectDataBase();
+    public static Connection getConnection(){
+         if(conn == null){
+             conn = connectDataBase();
          }
          return conn;
      }
    
-        private Connection connectDataBase(){
+        private static  Connection connectDataBase(){
             try{
-                Class.forName("com.mysql.jdbc.Driver"); 
+                Class.forName("com.mysql.cj.jdbc.Driver"); 
                 System.out.println("Succes Konek ke Database");
                 return DriverManager.getConnection(server, username, password); 
             } catch(ClassNotFoundException ex){
@@ -34,7 +34,7 @@ public class ConnectionManager {
             return null;
         }
         
-        public void logOff(){
+        public static void logOff(){
             try{
                 getConnection().close();
                 System.out.println("Koneksi Diputus!");

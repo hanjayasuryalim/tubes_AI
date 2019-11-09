@@ -22,11 +22,11 @@ public class DataAkses {
     //select all
     public static ArrayList<Data> getData(){
         ArrayList<Data> listData=new ArrayList<>(); 
-        ConnectionManager conManager = new ConnectionManager();
+       
         
        try{
            String query = "select * from gejala";
-            PreparedStatement st =  conManager.getConnection().prepareStatement(query);
+            PreparedStatement st =  ConnectionManager.getConnection().prepareStatement(query);
             ResultSet rs = st.executeQuery();
             
              while (rs.next()) {
