@@ -9,36 +9,39 @@ import java.sql.SQLException;
  * @author Hanjaya
  */
 public class ConnectionManager {
-    private static String server="jdbc:mysql://localhost/tbc";
-    private static String username="root";
-    private static String password="";
-    private static Connection connection;
+    private Connection conn;
+    private static String server = "jdbc:mysql://localhost/tbc";
+    private String username = "root";
+    private String password = "";
     
-    public static Connection getConnection() throws ClassNotFoundException{
-        if(connection==null){
-            connection=logOn();
+    public Connection getConnection(){
+         if(this.conn == null){
+             this.conn = connectDataBase();
+         }
+         return conn;
+     }
+   
+        private Connection connectDataBase(){
+            try{
+                Class.forName("com.mysql.jdbc.Driver"); 
+                System.out.println("Succes Konek ke Database");
+                return DriverManager.getConnection(server, username, password); 
+            } catch(ClassNotFoundException ex){
+                System.out.println("JDBC not found");
+            } catch(SQLException ex){
+                System.out.println("Failed to connect to database " + ex.getMessage());
+            } 
+            return null;
         }
-        return connection;
-    }
+        
+        public void logOff(){
+            try{
+                getConnection().close();
+                System.out.println("Koneksi Diputus!");
+            } catch (SQLException ex){
+                System.out.println(ex.getMessage());
+            }
+        }
+ 
     
-    private static Connection logOn() throws ClassNotFoundException{
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("conection build success!");
-            return DriverManager.getConnection(server,username,password);
-        }catch(SQLException e){
-            e.printStackTrace(System.err);
-            System.out.println("JDBC.ODBC not found!");
-        }
-        return null;
-    }
-    
-    private static void logOff(){
-        try{
-            connection.close();
-            System.out.println("connection closed!");
-        }catch(Exception e){
-            e.printStackTrace(System.err);
-        }
-    }
 }
