@@ -43,7 +43,7 @@ public class Cover extends JFrame{
         start.setBounds(260, 70, 130, 50);
         mainPanel.add(start);
         
-        exit = new JButton("Exit");
+        exit = new JButton("EXIT");
         exit.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
         exit.setBounds(260, 130, 130, 50);
         mainPanel.add(exit);
