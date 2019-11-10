@@ -37,6 +37,8 @@ public class NaiveBayes extends JFrame{
     private void initComponent(){
         //create mainPanel
         JPanel mainPanel = new JPanel(new BorderLayout());
+        JPanel formPanel=new JPanel(new GridLayout(13,3));
+        JPanel buttonPanel=new JPanel(new GridLayout(1,1));
         
         //create panelNavbar
         JPanel navbar = new JPanel(new GridLayout(1,2));
@@ -47,7 +49,14 @@ public class NaiveBayes extends JFrame{
         img = new JLabel(new ImageIcon(ResizeImage.resize("image/NaiveBayesTitle.png", 200, 50)), JLabel.RIGHT);
         navbar.add(img);
         
+        //create form Panel
+        
+        
+        //create 
         mainPanel.add(navbar, BorderLayout.NORTH);
+        mainPanel.add(formPanel,BorderLayout.CENTER);
+        mainPanel.add(buttonPanel,BorderLayout.SOUTH);
+        
         add(mainPanel);
         
         //actionListener

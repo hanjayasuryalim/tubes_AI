@@ -16,8 +16,8 @@ public class NaiveBayes {
     }
    
      //probabilitas a terhadap b
-    public double getNaiveProbability(String a,String b){
-        setArrayList();
+    public double getNaiveProbability(String a,String b,ArrayList<Data>dataList){
+        
         
         //variables
         a=a.toLowerCase();
@@ -287,8 +287,8 @@ public class NaiveBayes {
     }
     
     //probabilitas a terhadap semua
-    public double getNormalProbability(String a){
-        setArrayList();
+    public double getNormalProbability(String a,ArrayList<Data>dataList){
+        
         
         //variables
         int total=dataList.size();
@@ -311,5 +311,19 @@ public class NaiveBayes {
         return (double)pembilang/total;
     }
     
+   public void getPercentageNaive(){
+       setArrayList();
+       
+       double PYes=getNormalProbability("tbc",dataList);
+       double PNo=getNormalProbability("noTbc",dataList);
+       
+       System.out.println(PYes+"\n"+PNo);
+   }
+   
+    public static void main(String[] args) {
+        NaiveBayes obj=new NaiveBayes();
+        obj.getPercentageNaive();
+    }
+     
     
 }
