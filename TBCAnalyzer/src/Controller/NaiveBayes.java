@@ -415,15 +415,178 @@ public class NaiveBayes {
         return (double)pembilang/total;
     }
     
-   public void getPercentageNaive(){
+   public double getPercentageYesNaive(Data data){
        setArrayList();
        
-       double PYes=getNormalProbability("tbc",dataList);
-       double PNo=getNormalProbability("noTbc",dataList);
+       double probability=1;
+       double PYes=getNormalProbability("tbc",dataList);   
        
-       System.out.println(getNaiveProbability("merokok","tbc",dataList));
-       System.out.println(getNaiveProbability("nomerokok","tbc",dataList));
+       if(data.isMerokok()){
+           probability*=getNaiveProbability("merokok","tbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nomerokok","tbc",dataList);
+       }
+       
+       if(data.isKelembabanUdara()){
+           probability*=getNaiveProbability("kelembabanudara","tbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nokelembabanudara","tbc",dataList);
+       }
+       
+       if(data.isKeadaanRumah()){
+           probability*=getNaiveProbability("keadaanrumah","tbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nokeadaanrumah","tbc",dataList);
+       }
+       
+       if(data.isDiabetes()){
+           probability*=getNaiveProbability("diabetes","tbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nodiabetes","tbc",dataList);
+       }
+       
+       if(data.isHiv()){
+           probability*=getNaiveProbability("hiv","tbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nohiv","tbc",dataList);
+       }
+       
+       if(data.isBatuk()){
+           probability*=getNaiveProbability("batuk","tbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nobatuk","tbc",dataList);
+       }
+       
+       if(data.isSesakNafas()){
+           probability*=getNaiveProbability("sesaknafas","tbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nosesaknafas","tbc",dataList);
+       }
+       
+       if(data.isNyeriDada()){
+           probability*=getNaiveProbability("nyeridada","tbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nonyeridada","tbc",dataList);
+       }
+       
+       if(data.isDahak()){
+           probability*=getNaiveProbability("dahak","tbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nodahak","tbc",dataList);
+       }
+       
+       if(data.isDemam()){
+           probability*=getNaiveProbability("demam","tbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nodemam","tbc",dataList);
+       }
+       
+       if(data.isNafsuMakan()){
+           probability*=getNaiveProbability("nafsumakan","tbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nonafsumakan","tbc",dataList);
+       }
+       
+       if(data.isKeringatMalam()){
+           probability*=getNaiveProbability("keringatmalam","tbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nokeringatmalam","tbc",dataList);
+       }
+       
+       if(data.isTurunBeratBadan()){
+           probability*=getNaiveProbability("turunberatbadan","tbc",dataList);
+       }else{
+           probability*=getNaiveProbability("noturunberatbadan","tbc",dataList);
+       }
+       
+       return PYes*probability;
+   }
+ 
+   public double getPercentageNoNaive(Data data){
+       setArrayList();
+       
+       double probability=1;
+       double PNo=getNormalProbability("notbc",dataList);
+       
+       if(data.isMerokok()){
+           probability*=getNaiveProbability("merokok","notbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nomerokok","notbc",dataList);
+       }
+       
+       if(data.isKelembabanUdara()){
+           probability*=getNaiveProbability("kelembabanudara","notbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nokelembabanudara","notbc",dataList);
+       }
+       
+       if(data.isKeadaanRumah()){
+           probability*=getNaiveProbability("keadaanrumah","notbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nokeadaanrumah","notbc",dataList);
+       }
+       
+       if(data.isDiabetes()){
+           probability*=getNaiveProbability("diabetes","notbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nodiabetes","notbc",dataList);
+       }
+       
+       if(data.isHiv()){
+           probability*=getNaiveProbability("hiv","notbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nohiv","notbc",dataList);
+       }
+       
+       if(data.isBatuk()){
+           probability*=getNaiveProbability("batuk","notbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nobatuk","notbc",dataList);
+       }
+       
+       if(data.isSesakNafas()){
+           probability*=getNaiveProbability("sesaknafas","notbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nosesaknafas","notbc",dataList);
+       }
+       
+       if(data.isNyeriDada()){
+           probability*=getNaiveProbability("nyeridada","notbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nonyeridada","notbc",dataList);
+       }
+       
+       if(data.isDahak()){
+           probability*=getNaiveProbability("dahak","notbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nodahak","notbc",dataList);
+       }
+       
+       if(data.isDemam()){
+           probability*=getNaiveProbability("demam","notbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nodemam","notbc",dataList);
+       }
+       
+       if(data.isNafsuMakan()){
+           probability*=getNaiveProbability("nafsumakan","notbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nonafsumakan","notbc",dataList);
+       }
+       
+       if(data.isKeringatMalam()){
+           probability*=getNaiveProbability("keringatmalam","notbc",dataList);
+       }else{
+           probability*=getNaiveProbability("nokeringatmalam","notbc",dataList);
+       }
+       
+       if(data.isTurunBeratBadan()){
+           probability*=getNaiveProbability("turunberatbadan","notbc",dataList);
+       }else{
+           probability*=getNaiveProbability("noturunberatbadan","notbc",dataList);
+       }
+       
+       return PNo*probability;
    }
    
- 
 }
