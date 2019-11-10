@@ -118,7 +118,7 @@ public class AddDataSetPanel extends JPanel {
         hiv.add(temp2);
         
             //Batuk
-        temp = new JLabel("Batuk", JLabel.CENTER);
+        temp = new JLabel("Batuk Berdarah", JLabel.CENTER);
         contentPanel.add(temp);
         batukYes = new JRadioButton("Yes");
         contentPanel.add(batukYes);
