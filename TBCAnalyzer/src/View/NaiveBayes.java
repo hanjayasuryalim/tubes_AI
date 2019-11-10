@@ -207,9 +207,9 @@ public class NaiveBayes extends JFrame{
             //NafsuMakan
         temp = new JLabel("Nafsu Makan", JLabel.CENTER);
         contentPanel.add(temp);
-        nafsuMakanYes = new JRadioButton("Bertambah");
+        nafsuMakanYes = new JRadioButton("Berkurang");
         contentPanel.add(nafsuMakanYes);
-        temp2 = new JRadioButton("Berkurang");
+        temp2 = new JRadioButton("Tidak");
         contentPanel.add(temp2);
         nafsuMakan = new ButtonGroup();
         nafsuMakan.add(nafsuMakanYes);

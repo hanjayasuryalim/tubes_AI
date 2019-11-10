@@ -218,9 +218,9 @@ public class BackwardChaining extends JFrame{
             //TurunBeratBadan
         temp = new JLabel("Turun Berat Badan", JLabel.CENTER);
         contentPanel.add(temp);
-        turunBeratBadanYes = new JRadioButton("Yes");
+        turunBeratBadanYes = new JRadioButton("Berkurang");
         contentPanel.add(turunBeratBadanYes);
-        temp2 = new JRadioButton("No");
+        temp2 = new JRadioButton("Tidak");
         contentPanel.add(temp2);
         turunBeratBadan = new ButtonGroup();
         turunBeratBadan.add(turunBeratBadanYes);
