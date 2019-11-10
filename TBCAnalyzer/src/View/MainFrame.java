@@ -58,8 +58,8 @@ public class MainFrame extends JFrame{
         cardPanel.setLayout(cl);
         
         tbcPanel = new TBCPanel();
-        diagnozePanel=new DiagnozePanel(); 
-        addDataSetPanel=new AddDataSetPanel();
+        diagnozePanel = new DiagnozePanel(); 
+        addDataSetPanel = new AddDataSetPanel();
      
         cardPanel.add(tbcPanel, "1"); 
         cardPanel.add(diagnozePanel, "2");

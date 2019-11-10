@@ -319,11 +319,5 @@ public class NaiveBayes {
        
        System.out.println(PYes+"\n"+PNo);
    }
-   
-    public static void main(String[] args) {
-        NaiveBayes obj=new NaiveBayes();
-        obj.getPercentageNaive();
-    }
      
-    
 }
