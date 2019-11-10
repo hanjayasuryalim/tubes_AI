@@ -30,7 +30,7 @@ public class MainFrame extends JFrame{
     //layout
     private CardLayout cl;
     
-    private int currentCard=1;
+   
     
     
     public void initComponent(){
@@ -90,7 +90,7 @@ public class MainFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 cl.first(cardPanel);
-                currentCard=1;
+                
             }
         });
         
@@ -98,15 +98,15 @@ public class MainFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 cl.last(cardPanel);
-                currentCard=3;
+                
             }
         });
         
         diagnozeButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                currentCard=2;
-                cl.show(cardPanel,""+currentCard);
+                
+                cl.show(cardPanel,""+2);
             }
         });
         
