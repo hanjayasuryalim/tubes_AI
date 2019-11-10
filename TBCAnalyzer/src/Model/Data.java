@@ -132,6 +132,10 @@ public class Data {
     public void setTBC(boolean TBC) {
         this.TBC = TBC;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Data{" + "merokok=" + merokok + ", kelembabanUdara=" + kelembabanUdara + ", keadaanRumah=" + keadaanRumah + ", diabetes=" + diabetes + ", hiv=" + hiv + ", batuk=" + batuk + ", sesakNafas=" + sesakNafas + ", nyeriDada=" + nyeriDada + ", dahak=" + dahak + ", demam=" + demam + ", nafsuMakan=" + nafsuMakan + ", keringatMalam=" + keringatMalam + ", turunBeratBadan=" + turunBeratBadan + ", TBC=" + TBC + '}';
+    }
     
 }

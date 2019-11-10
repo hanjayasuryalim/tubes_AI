@@ -217,6 +217,84 @@ public class AddDataSetPanel extends JPanel {
         submit.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
+                if(merokokYes.isSelected()){ //rokok
+                    setData.setMerokok(true);
+                } else {
+                    setData.setMerokok(false);
+                }
+                
+                if(kelembapanYes.isSelected()){ //kelembapan
+                    setData.setKelembabanUdara(true);
+                } else {
+                    setData.setKelembabanUdara(false);
+                }
+                
+                if(keadaanRumahYes.isSelected()){ //keadaanrumah
+                    setData.setKeadaanRumah(true);
+                } else {
+                    setData.setKeadaanRumah(false);
+                }
+                
+                if(diabetesYes.isSelected()){ //diabetes
+                    setData.setDiabetes(true);
+                } else {
+                    setData.setDiabetes(false);
+                }
+                
+                if(hivYes.isSelected()){ //hiv
+                    setData.setHiv(true);
+                } else {
+                    setData.setHiv(false);
+                }
+                
+                if(batukYes.isSelected()){ //batuk
+                    setData.setBatuk(true);
+                } else {
+                    setData.setBatuk(false);
+                }
+                
+                if(sesakNafasYes.isSelected()){ //sesakNafas
+                    setData.setSesakNafas(true);
+                } else {
+                    setData.setSesakNafas(false);
+                }
+                
+                if(nyeriDadaYes.isSelected()){ //nyeridada
+                    setData.setNyeriDada(true);
+                } else {
+                    setData.setNyeriDada(false);
+                }
+                
+                if(dahakYes.isSelected()){ //dahak
+                    setData.setDahak(true);
+                } else {
+                    setData.setDahak(false);
+                }
+                
+                if(demamYes.isSelected()){ //demam
+                    setData.setDemam(true);
+                } else {
+                    setData.setDemam(false);
+                }
+                
+                if(nafsuMakanYes.isSelected()){ //NafsuMakan
+                    setData.setNafsuMakan(true);
+                } else {
+                    setData.setNafsuMakan(false);
+                }
+                
+                if(keringatMalamYes.isSelected()){ //keringatMalam
+                    setData.setKeringatMalam(true);
+                } else {
+                    setData.setKeringatMalam(false);
+                }
+                
+                if(turunBeratBadanYes.isSelected()){ //turunBeratBadan
+                    setData.setTurunBeratBadan(true);
+                } else {
+                    setData.setTurunBeratBadan(false);
+                }
+                
                 
             }
         });
