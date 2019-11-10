@@ -9,14 +9,14 @@ import Utilities.*;
  * @author Hanjaya
  */
 public class NaiveBayes {
-    private ArrayList<Data>dataList=new ArrayList<>();
+    private static ArrayList<Data>dataList=new ArrayList<>();
     
-    public void setArrayList(){
+    public static void setArrayList(){
         dataList=DataAkses.getData();
     }
    
      //probabilitas a terhadap b
-    public double getNaiveProbability(String a,String b,ArrayList<Data>dataList){
+    public static double getNaiveProbability(String a,String b,ArrayList<Data>dataList){
         
         
         //variables
@@ -391,7 +391,7 @@ public class NaiveBayes {
     }
     
     //probabilitas a terhadap semua
-    public double getNormalProbability(String a,ArrayList<Data>dataList){
+    public static double getNormalProbability(String a,ArrayList<Data>dataList){
         
         
         //variables
@@ -415,7 +415,7 @@ public class NaiveBayes {
         return (double)pembilang/total;
     }
     
-   public double getPercentageYesNaive(Data data){
+   public static double getPercentageYesNaive(Data data){
        setArrayList();
        
        double probability=1;
@@ -502,7 +502,7 @@ public class NaiveBayes {
        return PYes*probability;
    }
  
-   public double getPercentageNoNaive(Data data){
+   public static double getPercentageNoNaive(Data data){
        setArrayList();
        
        double probability=1;

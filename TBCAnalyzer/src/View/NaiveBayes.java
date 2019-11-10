@@ -19,6 +19,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.*;
+import java.text.DecimalFormat;
+
+import Controller.*;
 
 /**
  *
@@ -334,11 +337,20 @@ public class NaiveBayes extends JFrame{
                     setData.setTurunBeratBadan(false);
                 }
                 
-                System.out.println(setData.toString()); //pengecekan data
+                double yes=Controller.NaiveBayes.getPercentageYesNaive(setData);
+                double no=Controller.NaiveBayes.getPercentageNoNaive(setData);
+                DecimalFormat digit = new DecimalFormat("0.0000000000");
+                
+                if(yes>no){
+                    JOptionPane.showMessageDialog(null,"Menurut metode Naive Bayes,\nanda terdiagnosis tbc dengan probabilitas "+digit.format(yes));
+                }else{
+                    JOptionPane.showMessageDialog(null,"Menurut metode Naive Bayes,\nanda terdiagnosis tidak tbc dengan probabilitas "+digit.format(no));
+                } 
             }
+            
         });
             
-    }
+    } 
     
     class mouseAction extends MouseAdapter{
         @Override
