@@ -17,6 +17,7 @@ import javax.swing.*;
 public class Cover extends JFrame{
     private JLabel img;
     private JButton start;
+    private JButton exit;
     public static JFrame f;
     
     public Cover(){
@@ -39,9 +40,13 @@ public class Cover extends JFrame{
         //create button
         start = new JButton("START");
         start.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
-        start.setBounds(260, 100, 130, 60);
-        start.setPreferredSize(new Dimension(68,68));
+        start.setBounds(260, 70, 130, 50);
         mainPanel.add(start);
+        
+        exit = new JButton("Exit");
+        exit.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+        exit.setBounds(260, 130, 130, 50);
+        mainPanel.add(exit);
         
         getContentPane().add(mainPanel);
         
@@ -50,6 +55,13 @@ public class Cover extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e){
                 f = new MainFrame();
+                dispose();
+            }
+        });
+        
+        exit.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
                 dispose();
             }
         });
