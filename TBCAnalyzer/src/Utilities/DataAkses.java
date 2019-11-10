@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.*;
 
 /**
  *
@@ -56,11 +57,12 @@ public class DataAkses {
     }
     
     //add data to database
-    public static void addData(Data data){
+    public static boolean addData(Data data){
         String query="insert into gejala(merokok,kelembabanUdara,keadaanRumah,diabetes,hiv,batuk,sesakNafas,nyeriDada,dahak,demam,nafsuMakan,keringatMalam,turunBeratBadan,TBC)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        boolean check = true;
         try{
             ConnectionManager conManager = new ConnectionManager();
-            PreparedStatement st=conManager.getConnection().prepareStatement(query);
+            PreparedStatement st = conManager.getConnection().prepareStatement(query);
             st.setBoolean(1, data.isMerokok());
             st.setBoolean(2, data.isKelembabanUdara());
             st.setBoolean(3, data.isKeadaanRumah());
@@ -76,10 +78,14 @@ public class DataAkses {
             st.setBoolean(13, data.isTurunBeratBadan());
             st.setBoolean(14, data.isTBC());
             
-            st.execute();
+            st.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data Berhasil di Masukan, Terima Kasih Atas Partisipasinya!");
+            
         }catch(SQLException e){
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Data Gagal Dimasukan!");
+            check = false;
         }
-        
+        return check;
     }
 }

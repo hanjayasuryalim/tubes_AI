@@ -2,6 +2,7 @@
 package View;
 
 import Model.Data;
+import Utilities.DataAkses;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -19,7 +20,7 @@ public class AddDataSetPanel extends JPanel {
     private JLabel back;
 
     private JButton submit;
-    
+    private JButton reset;
     //button Group
     private ButtonGroup merokok;
     private ButtonGroup kelembapan;
@@ -34,6 +35,7 @@ public class AddDataSetPanel extends JPanel {
     private ButtonGroup nafsuMakan;
     private ButtonGroup keringatMalam;
     private ButtonGroup turunBeratBadan;
+    private ButtonGroup tbc;
     
     //JRadio Button
     private JRadioButton merokokYes;
@@ -50,13 +52,15 @@ public class AddDataSetPanel extends JPanel {
     private JRadioButton keringatMalamYes;
     private JRadioButton turunBeratBadanYes;
     private JRadioButton temp2;
+    private JRadioButton tbcYes;
     
-    private Data setData;
+    
+    private Data setData = new Data();
     
     public AddDataSetPanel(){
         setLayout(new BorderLayout());
         //CONTENT 
-        JPanel contentPanel = new JPanel(new GridLayout(13,3));
+        JPanel contentPanel = new JPanel(new GridLayout(14,3));
         contentPanel.setBorder(BorderFactory.createMatteBorder(2, 3, 3, 3, Color.BLACK));
             //Merokok
         temp = new JLabel("Merokok", JLabel.CENTER);
@@ -171,9 +175,9 @@ public class AddDataSetPanel extends JPanel {
             //NafsuMakan
         temp = new JLabel("Nafsu Makan", JLabel.CENTER);
         contentPanel.add(temp);
-        nafsuMakanYes = new JRadioButton("Bertambah");
+        nafsuMakanYes = new JRadioButton("Berkurang");
         contentPanel.add(nafsuMakanYes);
-        temp2 = new JRadioButton("Berkurang");
+        temp2 = new JRadioButton("Tidak");
         contentPanel.add(temp2);
         nafsuMakan = new ButtonGroup();
         nafsuMakan.add(nafsuMakanYes);
@@ -200,20 +204,55 @@ public class AddDataSetPanel extends JPanel {
         turunBeratBadan = new ButtonGroup();
         turunBeratBadan.add(turunBeratBadanYes);
         turunBeratBadan.add(temp2);
+        
+            //TBC
+        temp = new JLabel("TBC", JLabel.CENTER);
+        contentPanel.add(temp);
+        tbcYes = new JRadioButton("TBC");
+        contentPanel.add(tbcYes);
+        temp2 = new JRadioButton("Tidak TBC");
+        contentPanel.add(temp2);
+        tbc = new ButtonGroup();
+        tbc.add(tbcYes);
+        tbc.add(temp2);   
+        
         add(contentPanel, BorderLayout.CENTER);
         
         //Footer
         JPanel footerPanel = new JPanel(new FlowLayout());
         submit = new JButton("Submit");
         footerPanel.add(submit);
-        add(footerPanel, BorderLayout.SOUTH);
+        reset = new JButton("Reset");
+        footerPanel.add(reset);
+        
+        add(footerPanel, BorderLayout.SOUTH);        
         
         temp = new JLabel("             ");
         add(temp, BorderLayout.EAST);
         temp = new JLabel("             ");
         add(temp, BorderLayout.WEST);
         
-        //actionListener   
+        //actionListener  
+        reset.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                merokok.clearSelection();
+                kelembapan.clearSelection();
+                keadaanRumah.clearSelection();
+                diabetes.clearSelection();
+                hiv.clearSelection();
+                batuk.clearSelection();
+                sesakNafas.clearSelection();
+                nyeriDada.clearSelection();
+                dahak.clearSelection();
+                demam.clearSelection();
+                nafsuMakan.clearSelection();
+                keringatMalam.clearSelection();
+                turunBeratBadan.clearSelection();
+                tbc.clearSelection();
+            }
+        });
+                
         submit.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
@@ -295,7 +334,29 @@ public class AddDataSetPanel extends JPanel {
                     setData.setTurunBeratBadan(false);
                 }
                 
-                
+                if(tbcYes.isSelected()){ //TBC
+                    setData.setTBC(true);
+                }else{
+                    setData.setTBC(false);
+                }
+                      
+                boolean check_value = DataAkses.addData(setData);
+                if(check_value){
+                    merokok.clearSelection();
+                    kelembapan.clearSelection();
+                    keadaanRumah.clearSelection();
+                    diabetes.clearSelection();
+                    hiv.clearSelection();
+                    batuk.clearSelection();
+                    sesakNafas.clearSelection();
+                    nyeriDada.clearSelection();
+                    dahak.clearSelection();
+                    demam.clearSelection();
+                    nafsuMakan.clearSelection();
+                    keringatMalam.clearSelection();
+                    turunBeratBadan.clearSelection();
+                    tbc.clearSelection();
+                }
             }
         });
     }
