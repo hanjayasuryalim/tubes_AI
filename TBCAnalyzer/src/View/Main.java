@@ -9,7 +9,5 @@ public class Main {
         JFrame cover = new Cover();
         cover.setVisible(true);
         cover.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-    
-    
+    }    
 }

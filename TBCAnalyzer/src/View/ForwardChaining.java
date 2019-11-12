@@ -337,6 +337,14 @@ public class ForwardChaining extends JFrame{
                
                 System.out.println(setData.toString()); //pengecekan data
                 
+                Controller.ForwardChain.isiFakta(setData);
+                boolean result = Controller.ForwardChain.isResult();
+                
+                if(result == true){
+                    JOptionPane.showMessageDialog(null,"Menurut metode Forward Chaining, \n anda terdiagnosis TBC");
+                }else{
+                    JOptionPane.showMessageDialog(null,"Menurut metode Forward Chaining,\n anda tidak TBC");
+                } 
             }
         });
         
