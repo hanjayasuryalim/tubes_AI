@@ -1,0 +1,12 @@
+E=L
+B=G
+C=G
+K=M
+J+M=E
+D=G
+J=H
+A=D
+G=H
+K+B=H
+H+E=F
+F+D=*

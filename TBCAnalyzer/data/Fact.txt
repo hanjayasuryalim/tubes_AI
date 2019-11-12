@@ -1,0 +1,13 @@
+A = Merokok			
+B = Kelembapan Udara		
+C = Keadaan Rumah		
+D = Diabetes			
+E = HIV				
+F = Batuk Berdarah		
+G = Sesak Nafas			
+H = Nyeri Dada
+I = Dahak
+J = Demam
+K = Nafsu Makan
+L = Keringat Malam
+M = Turun Berat Badan
