@@ -11,6 +11,7 @@ import static View.Cover.f;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.*;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +20,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.*;
+import Controller.*;
+import Model.*;
 
 /**
  *
@@ -31,43 +34,40 @@ public class FuzzyLogic extends JFrame{
 
     private JButton proses;
     
-    //button Group
-    private ButtonGroup merokok;
-    private ButtonGroup kelembapan;
-    private ButtonGroup keadaanRumah;
-    private ButtonGroup diabetes;
-    private ButtonGroup hiv;
-    private ButtonGroup batuk;
-    private ButtonGroup sesakNafas;
-    private ButtonGroup nyeriDada;
-    private ButtonGroup dahak;
-    private ButtonGroup demam;
-    private ButtonGroup nafsuMakan;
-    private ButtonGroup keringatMalam;
-    private ButtonGroup turunBeratBadan;
-    
-    //JRadio Button
-    private JRadioButton merokokYes;
-    private JRadioButton kelembapanYes;
-    private JRadioButton keadaanRumahYes;
-    private JRadioButton diabetesYes;
-    private JRadioButton hivYes;
-    private JRadioButton batukYes;
-    private JRadioButton sesakNafasYes;
-    private JRadioButton nyeriDadaYes;
-    private JRadioButton dahakYes;
-    private JRadioButton demamYes;
-    private JRadioButton nafsuMakanYes;
-    private JRadioButton keringatMalamYes;
-    private JRadioButton turunBeratBadanYes;
-    private JRadioButton temp2;
+    private final String[] modes = {"Tsukamoto", "Sugeno"};
+    private JComboBox cbMethod;
+    private JTextField tfSuhu;
+    private JTextField tfTekanan;
     
     private Data setData = new Data();
     
     
+    public static  FuzzySet suhuDingin;
+    public static  FuzzySet suhuNormalNaik;
+    public static  FuzzySet suhuNormalTurun;
+    public static  FuzzySet suhuPanas;
+    public static  FuzzySet tekananRendah;
+    public static  FuzzySet tekananNormalNaik;
+    public static  FuzzySet tekananNormalTurun;
+    public static  FuzzySet tekananTinggi;
+    public static  FuzzySet tbcNegatif;
+    public static  FuzzySet tbcLatenTurun;
+    public static  FuzzySet tbcLatenNaik;
+    public static  FuzzySet tbcAktif;
+    
+    public static double suhuDinginValue;
+    public static double suhuNormalValue;
+    public static double suhuPanasValue;
+    public static double tekananRendahValue;
+    public static double tekananNormalValue;
+    public static double tekananTinggiValue;
+    
+    public static double suhu;
+    public static double tekanan;
+    
     public FuzzyLogic(){
         setSize(700,550);
-        setTitle("Backward Chaining ");
+        setTitle("Fuzzy Logic");
         setLocationRelativeTo(null);
         setResizable(false);
         initComponent();
@@ -76,6 +76,9 @@ public class FuzzyLogic extends JFrame{
     private void initComponent(){
         //create mainPanel
         JPanel mainPanel = new JPanel(new BorderLayout());
+        
+        //inisialisasi fuzzy sets
+        initFuzzySets();
         
         //create panelNavbar
         JPanel navbar = new JPanel(new GridLayout(1,2));
@@ -89,153 +92,22 @@ public class FuzzyLogic extends JFrame{
         //CONTENT 
         JPanel contentPanel = new JPanel(new GridLayout(13,3));
         contentPanel.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
-            //Merokok
-        temp = new JLabel("Merokok", JLabel.CENTER);
-        contentPanel.add(temp);
-        merokokYes = new JRadioButton("Yes");
-        contentPanel.add(merokokYes);
-        temp2 = new JRadioButton("No");
-        contentPanel.add(temp2);
-        merokok = new ButtonGroup();
-        merokok.add(merokokYes);
-        merokok.add(temp2);
+        mainPanel.add(createLegend(), BorderLayout.CENTER);
         
-            //KelembapanUdara
-        temp = new JLabel("Kelembapan Udara", JLabel.CENTER);
-        contentPanel.add(temp);
-        kelembapanYes = new JRadioButton("Lembap");
-        contentPanel.add(kelembapanYes);
-        temp2 = new JRadioButton("Tidak Lembap");
-        contentPanel.add(temp2);
-        kelembapan = new ButtonGroup();
-        kelembapan.add(kelembapanYes);
-        kelembapan.add(temp2);
-        
-            //KeadaanRumah
-        temp = new JLabel("Keadaan Rumah", JLabel.CENTER);
-        contentPanel.add(temp);
-        keadaanRumahYes = new JRadioButton("Bersih");
-        contentPanel.add(keadaanRumahYes);
-        temp2 = new JRadioButton("Kotor");
-        contentPanel.add(temp2);
-        keadaanRumah = new ButtonGroup();
-        keadaanRumah.add(keadaanRumahYes);
-        keadaanRumah.add(temp2);
-        
-            //Diabetes
-        temp = new JLabel("Diabetes", JLabel.CENTER);
-        contentPanel.add(temp);
-        diabetesYes = new JRadioButton("Yes");
-        contentPanel.add(diabetesYes);
-        temp2 = new JRadioButton("No");
-        contentPanel.add(temp2);
-        diabetes = new ButtonGroup();
-        diabetes.add(diabetesYes);
-        diabetes.add(temp2);
-        
-            //HIV
-        temp = new JLabel("HIV", JLabel.CENTER);
-        contentPanel.add(temp);
-        hivYes = new JRadioButton("Yes");
-        contentPanel.add(hivYes);
-        temp2 = new JRadioButton("No");
-        contentPanel.add(temp2);
-        hiv = new ButtonGroup();
-        hiv.add(hivYes);
-        hiv.add(temp2);
-        
-            //Batuk
-        temp = new JLabel("Batuk Berdarah", JLabel.CENTER);
-        contentPanel.add(temp);
-        batukYes = new JRadioButton("Yes");
-        contentPanel.add(batukYes);
-        temp2 = new JRadioButton("No");
-        contentPanel.add(temp2);
-        batuk = new ButtonGroup();
-        batuk.add(batukYes);
-        batuk.add(temp2);
-        
-            //SesakNafas
-        temp = new JLabel("Sesak Nafas", JLabel.CENTER);
-        contentPanel.add(temp);
-        sesakNafasYes = new JRadioButton("Yes");
-        contentPanel.add(sesakNafasYes);
-        temp2 = new JRadioButton("No");
-        contentPanel.add(temp2);
-        sesakNafas = new ButtonGroup();
-        sesakNafas.add(sesakNafasYes);
-        sesakNafas.add(temp2);
-        
-            //NyeriDada
-        temp = new JLabel("Sakit Dada", JLabel.CENTER);
-        contentPanel.add(temp);
-        nyeriDadaYes = new JRadioButton("Yes");
-        contentPanel.add(nyeriDadaYes);
-        temp2 = new JRadioButton("No");
-        contentPanel.add(temp2);
-        nyeriDada = new ButtonGroup();
-        nyeriDada.add(nyeriDadaYes);
-        nyeriDada.add(temp2);
-        
-            //Dahak
-        temp = new JLabel("Dahak", JLabel.CENTER);
-        contentPanel.add(temp);
-        dahakYes = new JRadioButton("Yes");
-        contentPanel.add(dahakYes);
-        temp2 = new JRadioButton("No");
-        contentPanel.add(temp2);
-        dahak = new ButtonGroup();
-        dahak.add(dahakYes);
-        dahak.add(temp2);
-        
-            //Demam
-        temp = new JLabel("Demam", JLabel.CENTER);
-        contentPanel.add(temp);
-        demamYes = new JRadioButton("Yes");
-        contentPanel.add(demamYes);
-        temp2 = new JRadioButton("No");
-        contentPanel.add(temp2);
-        demam = new ButtonGroup();
-        demam.add(demamYes);
-        demam.add(temp2);
-        
-            //NafsuMakan
-        temp = new JLabel("Nafsu Makan", JLabel.CENTER);
-        contentPanel.add(temp);
-        nafsuMakanYes = new JRadioButton("Berkurang");
-        contentPanel.add(nafsuMakanYes);
-        temp2 = new JRadioButton("Tidak");
-        contentPanel.add(temp2);
-        nafsuMakan = new ButtonGroup();
-        nafsuMakan.add(nafsuMakanYes);
-        nafsuMakan.add(temp2);
-        
-            //KeringatMalam
-        temp = new JLabel("Keringat Malam", JLabel.CENTER);
-        contentPanel.add(temp);
-        keringatMalamYes = new JRadioButton("Yes");
-        contentPanel.add(keringatMalamYes);
-        temp2 = new JRadioButton("No");
-        contentPanel.add(temp2);
-        keringatMalam = new ButtonGroup();
-        keringatMalam.add(keringatMalamYes);
-        keringatMalam.add(temp2);
-        
-            //TurunBeratBadan
-        temp = new JLabel("Turun Berat Badan", JLabel.CENTER);
-        contentPanel.add(temp);
-        turunBeratBadanYes = new JRadioButton("Yes");
-        contentPanel.add(turunBeratBadanYes);
-        temp2 = new JRadioButton("No");
-        contentPanel.add(temp2);
-        turunBeratBadan = new ButtonGroup();
-        turunBeratBadan.add(turunBeratBadanYes);
-        turunBeratBadan.add(temp2);
-        mainPanel.add(contentPanel, BorderLayout.CENTER);
         
         //Footer
         JPanel footerPanel = new JPanel(new FlowLayout());
         proses = new JButton("Proses");
+        
+        proses.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed (ActionEvent e){
+                dispose();
+                fuzzify();
+                
+            }
+        
+        });
         footerPanel.add(proses);
         mainPanel.add(footerPanel, BorderLayout.SOUTH);
         
@@ -247,96 +119,8 @@ public class FuzzyLogic extends JFrame{
         //add to frame
         getContentPane().add(mainPanel);
         
-        //actionListener
-        back.addMouseListener(new mouseAction());   
-        
-        proses.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                if(merokokYes.isSelected()){ //rokok
-                    setData.setMerokok(true);
-                } else {
-                    setData.setMerokok(false);
-                }
-                
-                if(kelembapanYes.isSelected()){ //kelembapan
-                    setData.setKelembabanUdara(true);
-                } else {
-                    setData.setKelembabanUdara(false);
-                }
-                
-                if(keadaanRumahYes.isSelected()){ //keadaanrumah
-                    setData.setKeadaanRumah(true);
-                } else {
-                    setData.setKeadaanRumah(false);
-                }
-                
-                if(diabetesYes.isSelected()){ //diabetes
-                    setData.setDiabetes(true);
-                } else {
-                    setData.setDiabetes(false);
-                }
-                
-                if(hivYes.isSelected()){ //hiv
-                    setData.setHiv(true);
-                } else {
-                    setData.setHiv(false);
-                }
-                
-                if(batukYes.isSelected()){ //batuk
-                    setData.setBatuk(true);
-                } else {
-                    setData.setBatuk(false);
-                }
-                
-                if(sesakNafasYes.isSelected()){ //sesakNafas
-                    setData.setSesakNafas(true);
-                } else {
-                    setData.setSesakNafas(false);
-                }
-                
-                if(nyeriDadaYes.isSelected()){ //nyeridada
-                    setData.setNyeriDada(true);
-                } else {
-                    setData.setNyeriDada(false);
-                }
-                
-                if(dahakYes.isSelected()){ //dahak
-                    setData.setDahak(true);
-                } else {
-                    setData.setDahak(false);
-                }
-                
-                if(demamYes.isSelected()){ //demam
-                    setData.setDemam(true);
-                } else {
-                    setData.setDemam(false);
-                }
-                
-                if(nafsuMakanYes.isSelected()){ //NafsuMakan
-                    setData.setNafsuMakan(true);
-                } else {
-                    setData.setNafsuMakan(false);
-                }
-                
-                if(keringatMalamYes.isSelected()){ //keringatMalam
-                    setData.setKeringatMalam(true);
-                } else {
-                    setData.setKeringatMalam(false);
-                }
-                
-                if(turunBeratBadanYes.isSelected()){ //turunBeratBadan
-                    setData.setTurunBeratBadan(true);
-                } else {
-                    setData.setTurunBeratBadan(false);
-                }
-                
-                System.out.println(setData.toString()); //pengecekan data
-            }
-        });
-        
-        
         getContentPane().add(mainPanel);
+        
         
         //actionListener
         back.addMouseListener(new mouseAction());        
@@ -356,7 +140,171 @@ public class FuzzyLogic extends JFrame{
         @Override
         public void mouseClicked(MouseEvent e){
             dispose();
-            f.setVisible(true);           
+            f.setVisible(true);  
         }
     }
+    
+    public JPanel createLegend(){
+        JPanel legendPanel = new JPanel();
+        legendPanel.setBorder(BorderFactory.createTitledBorder("Fuzzy"));
+        legendPanel.setLayout(new GridBagLayout());
+        
+        cbMethod = new JComboBox();
+        for (String mode : modes) {
+            cbMethod.addItem(mode);
+        }
+        
+        
+        JLabel labelSuhu = new JLabel("Suhu Tubuh: ");
+        JLabel labelTekanan = new JLabel("Tekanan Darah: ");
+        
+        GridBagConstraints c =  new GridBagConstraints();
+        
+        c.gridx = 0;
+        c.gridy = 0;
+        legendPanel.add(new JLabel("Method: "), c);
+        
+        c.gridx = 2;
+        c.gridy = 0;
+        
+        legendPanel.add(cbMethod, c);
+        
+        
+        c.gridx = 0;
+        c.gridy = 1;
+        legendPanel.add(labelSuhu, c);
+        
+        c.gridx = 0;
+        c.gridy = 2;
+        legendPanel.add(labelTekanan, c);
+        
+        
+        tfSuhu = new JTextField("36.0", 5);
+        tfTekanan = new JTextField("120", 5);
+        JButton buttonUpSuhu = new JButton("+");
+        buttonUpSuhu.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                editNumber(tfSuhu, .1);
+            }
+        });
+        JButton buttonDownSuhu = new JButton("-");
+        buttonDownSuhu.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                editNumber(tfSuhu, -.1);
+            }
+        });
+        
+        JButton buttonUpTekanan = new JButton("+");
+        buttonUpTekanan.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                editNumber(tfTekanan, .1);
+            }
+        });
+        JButton buttonDownTekanan = new JButton("-");
+        buttonDownTekanan.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                editNumber(tfTekanan, -.1);
+            }
+        });
+        
+        JPanel panelSliderSuhu = new JPanel(new BorderLayout());
+        JPanel panelSliderTekanan = new JPanel(new BorderLayout());
+        
+        // add slider stuff
+        panelSliderSuhu.add(buttonDownSuhu, BorderLayout.WEST);
+        panelSliderSuhu.add(tfSuhu, BorderLayout.CENTER);
+        panelSliderSuhu.add(buttonUpSuhu, BorderLayout.EAST);
+        
+        c.gridx = 2;
+        c.gridy = 1;
+        legendPanel.add(panelSliderSuhu, c);
+        
+        panelSliderTekanan.add(buttonDownTekanan, BorderLayout.WEST);
+        panelSliderTekanan.add(tfTekanan, BorderLayout.CENTER);
+        panelSliderTekanan.add(buttonUpTekanan, BorderLayout.EAST);
+        
+        c.gridx = 2;
+        c.gridy = 2;
+        legendPanel.add(panelSliderTekanan, c);
+        
+        return legendPanel;
+    }
+    
+    public void editNumber(JTextField a, double value){
+        int getValue =  (int) (Double.valueOf(a.getText()) * 10);
+        getValue += (value*10);
+        double result = (double)(getValue / 10.0);
+        a.setText(String.valueOf(result));
+        System.out.println(result);
+    }
+    
+    public void initFuzzySets(){
+        //fuzzy set suhu
+        suhuDingin = new FuzzySet(new Model.Point(36,1), new Model.Point(37, 0));
+        suhuNormalNaik = new FuzzySet(new Model.Point(36,0), new Model.Point(37, 1));
+        suhuNormalTurun = new FuzzySet(new Model.Point(37,1), new Model.Point(38, 0));
+        suhuPanas = new FuzzySet(new Model.Point(37,0), new Model.Point(38, 1));
+        
+        //fuzzy set tekanan
+        tekananRendah = new FuzzySet(new Model.Point(110,1), new Model.Point(120, 0));
+        tekananNormalNaik = new FuzzySet(new Model.Point(110,0), new Model.Point(120, 1));
+        tekananNormalTurun = new FuzzySet(new Model.Point(120,1), new Model.Point(120, 0));
+        tekananTinggi = new FuzzySet(new Model.Point(120,0), new Model.Point(130, 1));
+        
+        
+        //fuzzy set tbc
+        tbcNegatif = new FuzzySet(new Model.Point(0, 1), new Model.Point(20, 0));
+        tbcLatenNaik = new FuzzySet(new Model.Point(40, 0), new Model.Point(60, 1));
+        tbcLatenTurun = new FuzzySet(new Model.Point(60, 1), new Model.Point(80, 0));
+        tbcAktif = new FuzzySet(new Model.Point(80, 0), new Model.Point(100, 1));
+        
+    }
+    
+    public void fuzzify(){
+        suhu = Double.valueOf(tfSuhu.getText());
+        tekanan = Double.valueOf(tfTekanan.getText());
+        
+        suhuDinginValue = suhuDingin.fuzzify(suhu);
+        if (suhu > 36 && suhu<37) {
+            suhuNormalValue = suhuNormalNaik.fuzzify(suhu);
+        } else if (suhu >37 && suhu <38){
+            suhuNormalValue = suhuNormalTurun.fuzzify(suhu);
+        } else if (suhu <= 36 || suhu >= 38){
+            suhuNormalValue = 0.0;
+        } else{
+            suhuNormalValue = 1.0;
+        }
+        suhuPanasValue = suhuPanas.fuzzify(suhu);
+        
+        tekananRendahValue = tekananRendah.fuzzify(tekanan);
+        if (tekanan > 110 && tekanan<120) {
+            tekananNormalValue = tekananNormalNaik.fuzzify(tekanan);
+        } else if (tekanan >120 && tekanan <130){
+            tekananNormalValue = tekananNormalTurun.fuzzify(tekanan);
+        } else if (tekanan <= 110 || tekanan >= 130){
+            tekananNormalValue = 0.0;
+        } else{
+            tekananNormalValue = 1.0;
+        }
+        tekananTinggiValue = tekananTinggi.fuzzify(tekanan);
+        
+        String selected = cbMethod.getSelectedItem().toString();
+        
+        FuzzyResultFrame resultFrame = new FuzzyResultFrame(selected);
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

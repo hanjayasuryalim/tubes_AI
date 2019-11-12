@@ -11,8 +11,8 @@ import Model.*;
  * @author User
  */
 public class FuzzySet {
-    Point pointA;
-    Point pointB;
+    private Point pointA;
+    private Point pointB;
 
     public FuzzySet(Point pointA, Point pointB) {
         this.pointA = pointA;
@@ -20,15 +20,28 @@ public class FuzzySet {
     }
     
     public double fuzzify(double a){
-        if (a < pointA.x){
+        if (a <= pointA.x){
             return pointA.y;
-        } else if (a > pointB.x){
+        } else if (a >= pointB.x){
             return pointB.y;
         } else if (pointA.y < pointB.y) {
             return ((a-pointA.x)/(pointB.x-pointA.x));
         } else {
             return ((pointB.x-a)/(pointB.x-pointA.x));
         }  
+    }
+    
+    public double getZScore(double a){
+        if (pointA.y < pointB.y) {
+            return (pointB.x - (a*(pointB.x - pointA.x)));
+        } else {
+            return ((a*(pointB.x - pointA.x)) + pointA.x);
+        }  
+        
+    }
+    
+    public double getDistance(double a){
+        return (a-pointA.x)/(pointB.x-pointA.x);
     }
     
 }
