@@ -143,6 +143,7 @@ public class BackwardChainingOutput extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e){
                 boolean result = true;
+                String goals = "";
                 String search;
                 ArrayList<String> sudahDicari = new ArrayList<>();
                 while(result && visited.size() != hashRule.size() ){
@@ -158,7 +159,8 @@ public class BackwardChainingOutput extends JFrame{
                         System.out.println("MASUK ELSE : " + search);
                     }
                     
-                    if(search!=null){
+                    if(search != null){
+                        
                         boolean coba = false;
                         boolean coba2 = false;
                         //searching jalur yang didapat ada berapa
@@ -201,11 +203,11 @@ public class BackwardChainingOutput extends JFrame{
                             }
                         }
                         
-                        visited.put(search, hashRule.get(search));
+                        visited.put(search, hashRule.get(search)); //menambah ke arah visited
                         System.out.println("Yang sudah didatangi : " + search + " = " + hashRule.get(search));
                         
                         goal = obj.checkingGoal(goal, arrFact, hashData, hashRule);
-
+                        
                         //sout goal
                         System.out.println("Fact : ");
                         for(int k = 0; k < arrFact.size(); k++){
@@ -214,21 +216,31 @@ public class BackwardChainingOutput extends JFrame{
 
                         //sout goal
                         System.out.println("Goal : ");
+                        
                         for(String akhir : goal.keySet()){
                             System.out.println(akhir + " : " + goal.get(akhir));
                         }
                         
                     } else {
-                        result = false;
-                        JOptionPane.showMessageDialog(null, "Anda Tidak Terkena Penyakit TBC");
+                        goal = obj.checkingFinal(goal, arrFact, hashData, hashRule);
+                        if(obj.checkingFact(goal) == false){ //pengecekan goal sudah tercapai atau belum
+                            result = false;
+                            JOptionPane.showMessageDialog(null, "Anda Tidak Terkena Penyakit TBC");
+                        }   
+                        for(String akhir : goal.keySet()){
+                            goals += akhir + " : " + goal.get(akhir) + "\n";
+                            System.out.println(akhir + " : " + goal.get(akhir));
+                        }
                     }
                     
-
                     if(obj.checkingFact(goal)){ //pengecekan goal sudah tercapai atau belum
                         result = false;
                         JOptionPane.showMessageDialog(null, "Anda Terkena Penyakit TBC");
+                        JOptionPane.showMessageDialog(null, goals);
                     }
                 }
+                
+                
             }
         });
     }

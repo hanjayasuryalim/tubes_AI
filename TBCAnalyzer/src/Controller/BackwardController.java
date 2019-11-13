@@ -145,6 +145,10 @@ public class BackwardController {
             }
         }
         
+        return goal;
+    }
+    
+    public HashMap<String, String> checkingFinal(HashMap<String, String> goal, ArrayList<String> arrFact, HashMap<String, String> hashData, HashMap<String, String> hashRule){
         for(String temp : goal.keySet()){
             if(goal.get(temp).equals("n")){
                 for(String temp2 : hashRule.keySet()){
@@ -174,7 +178,7 @@ public class BackwardController {
             }
         }
         
-        
         return goal;
     }
+       
 }
