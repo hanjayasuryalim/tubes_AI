@@ -326,6 +326,12 @@ public class BackwardChaining extends JFrame{
                 }
                 
                 System.out.println(setData.toString()); //pengecekan data
+                
+                JFrame frame = new BackwardChainingOutput(setData);
+                frame.setVisible(true);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                
+                dispose();
             }
         });
         
